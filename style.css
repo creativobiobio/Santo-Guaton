@@ -241,7 +241,8 @@ h1, h2, h3 {
     gap: 5px;
 }
 
-.single-price-row .card-desc {
+.single-price-row .card-desc,
+.single-price-row .card-title {
     margin-bottom: 0px;
     flex: 1 1 60%;
 }

@@ -182,19 +182,30 @@ function renderMenuItems(items) {
         const descText = item[COLUMS.descripcion] ? item[COLUMS.descripcion].trim() : '';
         const descHtml = descText ? `<p class="card-desc">${descText}</p>` : '';
         
-        let descAndPrice = '';
+        let titleAndDescAndPrice = '';
         if (dualPriceHtml) {
-            descAndPrice = `
+            titleAndDescAndPrice = `
+                <h2 class="card-title">${item[COLUMS.nombre]}</h2>
                 ${descHtml}
                 ${dualPriceHtml}
             `;
         } else {
-            descAndPrice = `
-                <div class="single-price-row">
-                    ${descHtml}
-                    ${priceHtml}
-                </div>
-            `;
+            if (descText) {
+                titleAndDescAndPrice = `
+                    <h2 class="card-title">${item[COLUMS.nombre]}</h2>
+                    <div class="single-price-row">
+                        ${descHtml}
+                        ${priceHtml}
+                    </div>
+                `;
+            } else {
+                titleAndDescAndPrice = `
+                    <div class="single-price-row title-price-row">
+                        <h2 class="card-title">${item[COLUMS.nombre]}</h2>
+                        ${priceHtml}
+                    </div>
+                `;
+            }
         }
 
         card.innerHTML = `
@@ -204,8 +215,7 @@ function renderMenuItems(items) {
             </div>
             <div class="card-content">
                 <span class="card-category-label">${item[COLUMS.categoria] || ''}</span>
-                <h2 class="card-title">${item[COLUMS.nombre]}</h2>
-                ${descAndPrice}
+                ${titleAndDescAndPrice}
             </div>
         `;
         
