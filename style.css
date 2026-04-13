@@ -235,20 +235,20 @@ h1, h2, h3 {
 
 .single-price-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 15px;
-    margin-top: auto;
-    flex-grow: 1;
+    gap: 5px;
 }
 
 .single-price-row .card-desc {
     margin-bottom: 0px;
-    align-self: center;
+    flex: 1 1 60%;
 }
 
 .single-price-row .price-container {
     margin-top: 0px;
+    margin-left: auto;
     flex-shrink: 0;
 }
 
