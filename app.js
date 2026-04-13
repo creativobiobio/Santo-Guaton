@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initializeApp() {
     try {
-        const response = await fetch(GOOGLE_SHEET_URL);
+        const response = await fetch(GOOGLE_SHEET_URL + '&t=' + Date.now(), { cache: 'no-store' });
         if (!response.ok) throw new Error('Error al cargar los datos');
         const csvText = await response.text();
         allMenuItems = parseCSVToObj(csvText);
@@ -188,6 +188,7 @@ function renderMenuItems(items) {
                 <img src="${imgUrl}" alt="${item[COLUMS.nombre]}" class="card-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop'">
             </div>
             <div class="card-content">
+                <span class="card-category-label">${item[COLUMS.categoria] || ''}</span>
                 <h2 class="card-title">${item[COLUMS.nombre]}</h2>
                 ${descHtml}
                 ${priceHtml}
