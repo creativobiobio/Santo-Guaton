@@ -32,8 +32,8 @@ async function initializeApp() {
         renderMenuItems(allMenuItems);
         
     } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('menu-grid').innerHTML = '<p style="text-align:center; grid-column: 1/-1; font-size: 2rem;">FALLARON LOS BAJONES :(</p>';
+        console.error('Error detallado:', error);
+        document.getElementById('menu-grid').innerHTML = `<p style="text-align:center; grid-column: 1/-1; font-size: 1.5rem; color: #ff0000;">FALLARON LOS BAJONES :(<br>Error: ${error.message} <br><br><span style="font-size: 1rem; color: #fff;">Si dice "Failed to fetch" estás abriendo el archivo localmente y el navegador bloquea la conexión (CORS). Súbelo a un servidor.</span></p>`;
     } finally {
         setTimeout(hideLoader, 800); 
     }
