@@ -182,6 +182,21 @@ function renderMenuItems(items) {
         const descText = item[COLUMS.descripcion] ? item[COLUMS.descripcion].trim() : '';
         const descHtml = descText ? `<p class="card-desc">${descText}</p>` : '';
         
+        let descAndPrice = '';
+        if (dualPriceHtml) {
+            descAndPrice = `
+                ${descHtml}
+                ${dualPriceHtml}
+            `;
+        } else {
+            descAndPrice = `
+                <div class="single-price-row">
+                    ${descHtml}
+                    ${priceHtml}
+                </div>
+            `;
+        }
+
         card.innerHTML = `
             <div class="card-image-wrapper">
                 ${isUnavailable ? '<div class="unavailable-overlay">Agotado</div>' : ''}
@@ -190,9 +205,7 @@ function renderMenuItems(items) {
             <div class="card-content">
                 <span class="card-category-label">${item[COLUMS.categoria] || ''}</span>
                 <h2 class="card-title">${item[COLUMS.nombre]}</h2>
-                ${descHtml}
-                ${priceHtml}
-                ${dualPriceHtml}
+                ${descAndPrice}
             </div>
         `;
         

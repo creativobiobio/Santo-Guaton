@@ -233,6 +233,25 @@ h1, h2, h3 {
     flex-grow: 1;
 }
 
+.single-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 15px;
+    margin-top: auto;
+    flex-grow: 1;
+}
+
+.single-price-row .card-desc {
+    margin-bottom: 0px;
+    align-self: center;
+}
+
+.single-price-row .price-container {
+    margin-top: 0px;
+    flex-shrink: 0;
+}
+
 /* Precios */
 .price-container {
     display: flex;
