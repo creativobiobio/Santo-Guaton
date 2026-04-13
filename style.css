@@ -340,7 +340,7 @@ h1, h2, h3 {
         margin-top: 10px;
     }
     .brand-logo-img {
-        max-width: 200px;
+        max-width: 140px;
     }
     .hero {
         padding: 40px 15px 20px;
@@ -360,12 +360,12 @@ h1, h2, h3 {
         display: none; /* Chrome, Safari, Opera */
     }
     .filter-btn {
-        font-size: 1.1rem;
-        padding: 8px 18px;
+        font-size: 0.85rem;
+        padding: 5px 12px;
         white-space: nowrap;
         flex-shrink: 0;
         border-width: 2px;
-        box-shadow: 3px 3px 0 var(--text-white);
+        box-shadow: 2px 2px 0 var(--text-white);
     }
     .filter-btn:hover {
         transform: translate(1px, 1px);
