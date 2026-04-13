@@ -346,18 +346,12 @@ h1, h2, h3 {
         padding: 40px 15px 20px;
     }
     
-    /* Categorías más compactas con scroll horizontal */
+    /* Categorías compactas envueltas (sin scroll) */
     .category-filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding-bottom: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
         margin: 20px 0 30px;
-        -ms-overflow-style: none; /* IE y Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-    .category-filters::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        gap: 8px;
     }
     .filter-btn {
         font-size: 0.85rem;
