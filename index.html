@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menú Santo Guaton - Bajoncitos Guatones">
+    <title>Santo Guaton | Menú</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="loader-content">
+            <h1 class="loader-brand">Santo <br> Guaton</h1>
+            <p>Cargando los bajones...</p>
+        </div>
+    </div>
+
+    <main id="main-content" class="hidden">
+        <header class="hero">
+            <div class="brand-logo">
+                <span class="santo">SANTO</span>
+                <span class="guaton">GUATON</span>
+            </div>
+            <h1 class="hero-title">NUESTRO MENÚ</h1>
+        </header>
+
+        <section class="menu-section">
+            <div class="container">
+                <div id="category-filters" class="category-filters"></div>
+                <div id="menu-grid" class="menu-grid">
+                    <!-- Skeleton loaders -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="container">
+                <h2 class="footer-title">SANTO GUATON</h2>
+                <p>+56 9 3616 5900 | @CLUBSANTOGUATON</p>
+                <p>&copy; <span id="year"></span> Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
