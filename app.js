@@ -11,7 +11,9 @@ const COLUMS = {
     etiqueta1: 'ETIQUETA1',
     precio1: 'PRECIO1',
     etiqueta2: 'ETIQUETA2',
-    precio2: 'PRECIO2'
+    precio2: 'PRECIO2',
+    etiqueta3: 'ETIQUETA3',
+    precio3: 'PRECIO3'
 };
 
 let allMenuItems = [];
@@ -155,9 +157,10 @@ function renderMenuItems(items) {
         let dualPriceHtml = '';
         const precio1 = item[COLUMS.precio1] ? item[COLUMS.precio1].trim() : '';
         const precio2 = item[COLUMS.precio2] ? item[COLUMS.precio2].trim() : '';
+        const precio3 = item[COLUMS.precio3] ? item[COLUMS.precio3].trim() : '';
         const precioPrincipal = item[COLUMS.precio] ? item[COLUMS.precio].trim() : '';
         
-        if (precio1 || precio2) {
+        if (precio1 || precio2 || precio3) {
             dualPriceHtml = '<div class="dual-price-container">';
             if (precio1) {
                 const etiq1 = item[COLUMS.etiqueta1] ? item[COLUMS.etiqueta1].trim() : '';
@@ -166,6 +169,10 @@ function renderMenuItems(items) {
             if (precio2) {
                 const etiq2 = item[COLUMS.etiqueta2] ? item[COLUMS.etiqueta2].trim() : '';
                 dualPriceHtml += `<div class="price-item"><span class="price-label">${etiq2}</span><span class="price-value">${formatPrice(precio2)}</span></div>`;
+            }
+            if (precio3) {
+                const etiq3 = item[COLUMS.etiqueta3] ? item[COLUMS.etiqueta3].trim() : '';
+                dualPriceHtml += `<div class="price-item"><span class="price-label">${etiq3}</span><span class="price-value">${formatPrice(precio3)}</span></div>`;
             }
             dualPriceHtml += '</div>';
         } else if (precioPrincipal) {

@@ -96,21 +96,15 @@ h1, h2, h3 {
     margin-bottom: 20px;
 }
 
-.brand-logo .santo {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    color: var(--text-white);
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-    margin-bottom: -15px;
-    transform: rotate(-5deg);
+.brand-logo-img {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.6));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.brand-logo .guaton {
-    font-family: var(--font-heading);
-    font-size: 5rem;
-    color: var(--primary-yellow);
-    text-shadow: 4px 4px 0 #000;
-    transform: rotate(2deg);
+.brand-logo-img:hover {
+    transform: scale(1.05) rotate(-2deg);
 }
 
 .hero-title {
@@ -339,11 +333,74 @@ h1, h2, h3 {
 @media (max-width: 600px) {
     .menu-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     .hero-title {
         font-size: 2.5rem;
+        margin-top: 10px;
     }
-    .brand-logo .guaton {
-        font-size: 4rem;
+    .brand-logo-img {
+        max-width: 200px;
+    }
+    .hero {
+        padding: 40px 15px 20px;
+    }
+    
+    /* Categorías más compactas con scroll horizontal */
+    .category-filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 15px;
+        margin: 20px 0 30px;
+        -ms-overflow-style: none; /* IE y Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .category-filters::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    .filter-btn {
+        font-size: 1.1rem;
+        padding: 8px 18px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border-width: 2px;
+        box-shadow: 3px 3px 0 var(--text-white);
+    }
+    .filter-btn:hover {
+        transform: translate(1px, 1px);
+        box-shadow: 2px 2px 0 var(--text-white);
+    }
+    .filter-btn.active {
+        box-shadow: 3px 3px 0 #000;
+    }
+    .filter-btn.active:hover {
+        box-shadow: 2px 2px 0 #000;
+    }
+
+    /* Tarjetas y descripciones compactas */
+    .card-image-wrapper {
+        height: 140px;
+    }
+    .card-content {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+    }
+    .card-desc {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+    .card-price {
+        font-size: 1.8rem;
+    }
+    .price-label {
+        font-size: 0.8rem;
+    }
+    .price-value {
+        font-size: 1.4rem;
     }
 }
