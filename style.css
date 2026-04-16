@@ -59,16 +59,32 @@ body {
 .loader-content {
     text-align: center;
     color: var(--primary-yellow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-.loader-brand {
-    font-family: var(--font-heading);
-    font-size: 4rem;
-    letter-spacing: 2px;
-    line-height: 1;
-    margin-bottom: 20px;
-    text-shadow: 4px 4px 0 #000;
+.loader-logo {
+    max-width: 200px;
+    height: auto;
     animation: pulse 1.5s infinite;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.6));
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 203, 0, 0.3);
+    border-top: 4px solid var(--primary-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 5px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes pulse {
