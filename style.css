@@ -66,6 +66,7 @@ body {
 }
 
 .loader-logo {
+    width: 100%;
     max-width: 200px;
     height: auto;
     animation: pulse 1.5s infinite;
