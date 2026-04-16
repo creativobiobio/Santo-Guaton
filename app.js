@@ -38,7 +38,7 @@ async function initializeApp() {
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 const val = e.target.value.trim().toLowerCase();
-                if (val.length >= 3) {
+                if (val.length >= 2) {
                     currentSearchTerm = val;
                     applyFilters();
                 } else {
@@ -118,7 +118,7 @@ function applyFilters() {
         });
     }
     
-    if (currentSearchTerm.length >= 3) {
+    if (currentSearchTerm.length >= 2) {
         filtered = filtered.filter(item => {
             const nombre = (item[COLUMS.nombre] || '').toLowerCase();
             const desc = (item[COLUMS.descripcion] || '').toLowerCase();
