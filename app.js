@@ -122,7 +122,8 @@ function applyFilters() {
         filtered = filtered.filter(item => {
             const nombre = (item[COLUMS.nombre] || '').toLowerCase();
             const desc = (item[COLUMS.descripcion] || '').toLowerCase();
-            return nombre.includes(currentSearchTerm) || desc.includes(currentSearchTerm);
+            const catItem = (item[COLUMS.categoria] || '').toLowerCase();
+            return nombre.includes(currentSearchTerm) || desc.includes(currentSearchTerm) || catItem.includes(currentSearchTerm);
         });
     }
     
