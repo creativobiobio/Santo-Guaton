@@ -17,6 +17,8 @@ const COLUMS = {
 };
 
 let allMenuItems = [];
+let currentSearchTerm = '';
+let currentCategory = 'TODOS';
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -31,6 +33,23 @@ async function initializeApp() {
         allMenuItems = parseCSVToObj(csvText);
 
         renderCategoryFilters(allMenuItems);
+        
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const val = e.target.value.trim().toLowerCase();
+                if (val.length >= 3) {
+                    currentSearchTerm = val;
+                    applyFilters();
+                } else {
+                    if (currentSearchTerm !== '') {
+                        currentSearchTerm = '';
+                        applyFilters();
+                    }
+                }
+            });
+        }
+
         renderMenuItems(allMenuItems);
         
     } catch (error) {
@@ -85,15 +104,29 @@ function filterByCategory(category, buttonElement) {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     if (buttonElement) buttonElement.classList.add('active');
     
-    if (category === 'TODOS') {
-        renderMenuItems(allMenuItems);
-    } else {
-        const filtered = allMenuItems.filter(item => {
+    currentCategory = category;
+    applyFilters();
+}
+
+function applyFilters() {
+    let filtered = allMenuItems;
+    
+    if (currentCategory !== 'TODOS') {
+        filtered = filtered.filter(item => {
             const cat = item[COLUMS.categoria];
-            return cat && cat.trim().toUpperCase() === category;
+            return cat && cat.trim().toUpperCase() === currentCategory;
         });
-        renderMenuItems(filtered);
     }
+    
+    if (currentSearchTerm.length >= 3) {
+        filtered = filtered.filter(item => {
+            const nombre = (item[COLUMS.nombre] || '').toLowerCase();
+            const desc = (item[COLUMS.descripcion] || '').toLowerCase();
+            return nombre.includes(currentSearchTerm) || desc.includes(currentSearchTerm);
+        });
+    }
+    
+    renderMenuItems(filtered);
 }
 
 function renderMenuItems(items) {

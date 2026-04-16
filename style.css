@@ -85,7 +85,7 @@ h1, h2, h3 {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 60px 20px 0px;
+    padding: 30px 20px 0px;
 }
 
 .brand-logo {
@@ -93,11 +93,11 @@ h1, h2, h3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .brand-logo-img {
-    max-width: 300px;
+    max-width: 220px;
     height: auto;
     filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.6));
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -108,32 +108,59 @@ h1, h2, h3 {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     color: var(--text-white);
-    text-shadow: 4px 4px 0 #000;
-    margin-top: 20px;
+    text-shadow: 3px 3px 0 #000;
+    margin-top: 10px;
     -webkit-text-stroke: 1px #000;
+}
+
+/* Search Bar */
+.search-container {
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-black);
+    background-color: var(--text-white);
+    border: 3px solid #000;
+    border-radius: 30px;
+    box-shadow: 4px 4px 0 var(--primary-yellow);
+    outline: none;
+    transition: all 0.2s;
+}
+
+.search-input:focus {
+    box-shadow: 2px 2px 0 var(--primary-red);
+    transform: translate(2px, 2px);
 }
 
 /* Filters */
 .category-filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
-    margin: 20px 0 30px;
+    margin: 15px 0 25px;
 }
 
 .filter-btn {
     background-color: transparent;
     color: var(--text-white);
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    padding: 10px 25px;
-    border: 3px solid var(--text-white);
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    border: 2px solid var(--text-white);
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 4px 4px 0 var(--text-white);
+    box-shadow: 3px 3px 0 var(--text-white);
     transition: all 0.2s;
     letter-spacing: 1px;
 }
@@ -367,26 +394,31 @@ h1, h2, h3 {
         gap: 20px;
     }
     .hero-title {
-        font-size: 2.5rem;
-        margin-top: 10px;
+        font-size: 1.8rem;
+        margin-top: 8px;
     }
     .brand-logo-img {
-        max-width: 240px;
+        max-width: 170px;
     }
     .hero {
-        padding: 40px 15px 20px;
+        padding: 20px 15px 10px;
     }
     
+    .search-input {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
     /* Categorías compactas envueltas (sin scroll) */
     .category-filters {
         flex-wrap: wrap;
         justify-content: center;
-        margin: 20px 0 30px;
-        gap: 8px;
+        margin: 12px 0 20px;
+        gap: 6px;
     }
     .filter-btn {
-        font-size: 0.85rem;
-        padding: 5px 12px;
+        font-size: 0.8rem;
+        padding: 4px 10px;
         white-space: nowrap;
         flex-shrink: 0;
         border-width: 2px;
