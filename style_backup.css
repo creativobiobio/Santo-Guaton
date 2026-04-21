@@ -232,30 +232,16 @@ h1, h2, h3 {
 }
 
 .card-image-wrapper {
-    height: 280px;
+    height: 200px;
+    border-bottom: 4px solid #000;
     position: relative;
-    background-color: var(--primary-yellow); /* Se iguala al fondo de la tarjeta */
-}
-
-/* Efecto de gradiente desvanecido (Opción 4) */
-.card-image-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    height: 80px; /* Tamaño del difuminado */
-    background: linear-gradient(to bottom, rgba(255, 203, 0, 0) 0%, var(--primary-yellow) 100%);
-    pointer-events: none; /* Para no bloquear clics */
-    z-index: 1;
+    background-color: #000;
 }
 
 .card-image {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Muestra la imagen completa, sin recortes importando su orientación */
-    object-position: center; /* Se centra perfectamente */
-    z-index: 0;
+    object-fit: cover;
 }
 
 .card-content {
@@ -468,7 +454,7 @@ h1, h2, h3 {
 
     /* Tarjetas y descripciones compactas */
     .card-image-wrapper {
-        height: 220px;
+        height: 140px;
     }
     .card-content {
         padding: 15px;
