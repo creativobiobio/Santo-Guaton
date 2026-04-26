@@ -166,6 +166,15 @@ h1, h2, h3 {
     gap: 10px;
     justify-content: center;
     margin: 15px 0 25px;
+    animation: swipeHint 1.2s ease-in-out 0.5s 1;
+}
+
+@keyframes swipeHint {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-12px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(2px); }
 }
 
 .filter-btn {
@@ -182,20 +191,37 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
-.filter-btn:hover {
-    transform: translate(2px, 2px);
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+.filter-btn:not(.active) {
+    animation: buttonPulse 2s infinite ease-in-out;
+}
+
+.filter-btn:not(.active):hover {
+    animation-play-state: paused;
+    transform: translate(2px, 2px) scale(1);
     box-shadow: 2px 2px 0 var(--text-white);
+}
+
+@keyframes neonGlow {
+    0%, 100% { box-shadow: 4px 4px 0 #000, 0 0 8px var(--primary-yellow), 0 0 15px var(--primary-yellow); }
+    50% { box-shadow: 4px 4px 0 #000, 0 0 10px var(--primary-red), 0 0 20px var(--primary-red); }
 }
 
 .filter-btn.active {
     background-color: var(--primary-yellow);
     color: var(--text-black);
     border-color: var(--text-black);
-    box-shadow: 4px 4px 0 #000;
+    animation: neonGlow 2.5s infinite alternate;
 }
 
 .filter-btn.active:hover {
-    box-shadow: 2px 2px 0 #000;
+    animation-play-state: paused;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000, 0 0 15px var(--primary-yellow);
 }
 
 /* Grid & Cards */
@@ -474,15 +500,13 @@ h1, h2, h3 {
         border-width: 2px;
         box-shadow: 2px 2px 0 var(--text-white);
     }
-    .filter-btn:hover {
-        transform: translate(1px, 1px);
+    .filter-btn:not(.active):hover {
+        transform: translate(1px, 1px) scale(1);
         box-shadow: 2px 2px 0 var(--text-white);
     }
-    .filter-btn.active {
-        box-shadow: 3px 3px 0 #000;
-    }
     .filter-btn.active:hover {
-        box-shadow: 2px 2px 0 #000;
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 #000, 0 0 15px var(--primary-yellow);
     }
 
     /* Tarjetas y descripciones compactas */
