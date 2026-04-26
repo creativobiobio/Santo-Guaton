@@ -20,7 +20,7 @@ body {
     /* Fondo urbano con pared de graffiti y overlay oscuro para la estetica Street Comic */
     background-image: 
         linear-gradient(rgba(18, 0, 13, 0.4), rgba(0, 0, 0, 0.6)),
-        url('fondo_graffiti.png');
+        url('fondo_graffiti.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
