@@ -258,7 +258,7 @@ function renderMenuItems(items) {
         card.innerHTML = `
             <div class="card-image-wrapper">
                 ${isUnavailable ? '<div class="unavailable-overlay">Agotado</div>' : ''}
-                <img src="${imgUrl}" alt="${item[COLUMS.nombre]}" class="card-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop'">
+                <img src="${imgUrl}" alt="${item[COLUMS.nombre]}" class="card-image" loading="${index < 4 ? 'eager' : 'lazy'}" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop'">
             </div>
             <div class="card-content">
                 <span class="card-category-label">${item[COLUMS.categoria] || ''}</span>
