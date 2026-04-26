@@ -55,8 +55,7 @@ async function initializeApp() {
             });
         }
 
-
-        renderMenuItems(allMenuItems);
+        initializeAllMenuItems(allMenuItems);
         
     } catch (error) {
         console.error('Error detallado:', error);
@@ -122,28 +121,51 @@ function filterByCategory(category, buttonElement) {
 }
 
 function applyFilters() {
-    let filtered = allMenuItems;
+    const grid = document.getElementById('menu-grid');
+    const cards = grid.querySelectorAll('.menu-card');
     
-    if (currentCategory !== 'TODOS') {
-        filtered = filtered.filter(item => {
-            const cat = item[COLUMS.categoria];
-            return cat && cat.trim().toUpperCase() === currentCategory;
-        });
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const search = card.getAttribute('data-search');
+        
+        let show = true;
+        
+        if (currentCategory !== 'TODOS') {
+             if (cat !== currentCategory) show = false;
+        }
+        
+        if (currentSearchTerm.length >= 2) {
+             if (!search.includes(currentSearchTerm)) show = false;
+        }
+        
+        if (show) {
+            card.classList.remove('hidden');
+            // Resetear la animación para que se vea genial en cada filtro
+            card.style.animation = 'none';
+            card.offsetHeight; // trigger repintado del navegador
+            card.style.animation = null;
+            card.style.animationDelay = `${visibleCount * 0.05}s`;
+            visibleCount++;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    // Manejar el caso donde no hay coincidencias
+    let emptyMessage = document.getElementById('empty-message');
+    if (!emptyMessage) {
+        emptyMessage = document.createElement('p');
+        emptyMessage.id = 'empty-message';
+        emptyMessage.style.cssText = 'text-align:center; grid-column: 1/-1; font-size: 1.5rem;';
+        emptyMessage.textContent = 'Cero bajones por acá.';
+        grid.appendChild(emptyMessage);
     }
-    
-    if (currentSearchTerm.length >= 2) {
-        filtered = filtered.filter(item => {
-            const nombre = (item[COLUMS.nombre] || '').toLowerCase();
-            const desc = (item[COLUMS.descripcion] || '').toLowerCase();
-            const catItem = (item[COLUMS.categoria] || '').toLowerCase();
-            return nombre.includes(currentSearchTerm) || desc.includes(currentSearchTerm) || catItem.includes(currentSearchTerm);
-        });
-    }
-    
-    renderMenuItems(filtered);
+    emptyMessage.style.display = visibleCount === 0 ? 'block' : 'none';
 }
 
-function renderMenuItems(items) {
+function initializeAllMenuItems(items) {
     const grid = document.getElementById('menu-grid');
     grid.innerHTML = ''; 
     
@@ -197,8 +219,29 @@ function renderMenuItems(items) {
         card.className = `menu-card ${isUnavailable ? 'unavailable' : ''}`;
         card.style.animationDelay = `${index * 0.05}s`; 
         
+        // Agregar información de filtrado directo en el HTML del platillo
+        const catValue = (item[COLUMS.categoria] || '').trim().toUpperCase();
+        const searchValue = `${item[COLUMS.nombre]} ${item[COLUMS.descripcion]} ${item[COLUMS.categoria]}`.toLowerCase();
+        card.setAttribute('data-category', catValue);
+        card.setAttribute('data-search', searchValue);
+        
         const fallbackImg = getFallbackImage(item[COLUMS.categoria], item[COLUMS.nombre]);
-        const imgUrl = item[COLUMS.imagen] || fallbackImg;
+        let imgUrl = item[COLUMS.imagen] ? item[COLUMS.imagen].trim() : '';
+        
+        // Optimizar imágenes de GitHub transformándolas a jsDelivr Global CDN en tiempo real
+        if (imgUrl) {
+            try {
+                if (imgUrl.includes('raw.githubusercontent.com')) {
+                    const parts = new URL(imgUrl).pathname.split('/').filter(p => p);
+                    if (parts.length >= 4) imgUrl = `https://cdn.jsdelivr.net/gh/${parts[0]}/${parts[1]}@${parts[2]}/${parts.slice(3).join('/')}`;
+                } else if (imgUrl.includes('github.com') && imgUrl.includes('/blob/')) {
+                    const parts = new URL(imgUrl).pathname.split('/').filter(p => p);
+                    if (parts.length >= 5 && parts[2] === 'blob') imgUrl = `https://cdn.jsdelivr.net/gh/${parts[0]}/${parts[1]}@${parts[3]}/${parts.slice(4).join('/')}`;
+                }
+            } catch(e) { } // ignorar error silenciosamente si la url está mal construida
+        } else {
+            imgUrl = fallbackImg;
+        }
         
         let priceHtml = '';
         let dualPriceHtml = '';
